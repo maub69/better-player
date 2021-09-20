@@ -19,6 +19,8 @@ class BetterPlayerCacheConfiguration {
   /// The size to download.
   final int preCacheSize;
 
+  final String pathExtra;
+
   ///Cache key to re-use same cached data between app sessions.
   final String? key;
 
@@ -27,5 +29,6 @@ class BetterPlayerCacheConfiguration {
       this.maxCacheSize = 10 * 1024 * 1024,
       this.maxCacheFileSize = 10 * 1024 * 1024,
       this.preCacheSize = 3 * 1024 * 1024,
-      this.key});
+      this.key,
+      this.pathExtra = "none"});
 }

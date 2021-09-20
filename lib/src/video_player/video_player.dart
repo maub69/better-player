@@ -340,7 +340,8 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
       String? certificateUrl,
       Map<String, String>? drmHeaders,
       String? activityName,
-      String? clearKey}) {
+      String? clearKey,
+      String? pathExtra}) {
     return _setDataSource(
       DataSource(
           sourceType: DataSourceType.network,
@@ -361,7 +362,9 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
           certificateUrl: certificateUrl,
           drmHeaders: drmHeaders,
           activityName: activityName,
-          clearKey: clearKey),
+          clearKey: clearKey,
+          pathExtra: pathExtra
+          ),
     );
   }
 

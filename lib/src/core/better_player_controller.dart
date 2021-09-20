@@ -470,7 +470,8 @@ class BetterPlayerController {
             drmHeaders: _betterPlayerDataSource?.drmConfiguration?.headers,
             activityName: _betterPlayerDataSource
                 ?.notificationConfiguration?.activityName,
-            clearKey: _betterPlayerDataSource?.drmConfiguration?.clearKey);
+            clearKey: _betterPlayerDataSource?.drmConfiguration?.clearKey,
+            pathExtra: _betterPlayerDataSource!.cacheConfiguration?.pathExtra);
 
         break;
       case BetterPlayerDataSourceType.file:

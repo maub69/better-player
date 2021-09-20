@@ -65,7 +65,7 @@ public class CacheWorker extends Worker {
                 }
 
                 CacheDataSourceFactory cacheDataSourceFactory =
-                        new CacheDataSourceFactory(mContext, maxCacheSize, maxCacheFileSize, dataSourceFactory);
+                        new CacheDataSourceFactory(mContext, maxCacheSize, maxCacheFileSize, "", dataSourceFactory);
 
                 mCacheWriter = new CacheWriter(
                         cacheDataSourceFactory.createDataSource(),

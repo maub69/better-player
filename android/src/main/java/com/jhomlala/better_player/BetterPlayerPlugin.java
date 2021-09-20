@@ -102,6 +102,7 @@ public class BetterPlayerPlugin implements FlutterPlugin, ActivityAware, MethodC
     private static final String DISPOSE_METHOD = "dispose";
     private static final String PRE_CACHE_METHOD = "preCache";
     private static final String STOP_PRE_CACHE_METHOD = "stopPreCache";
+    private static final String PATH_EXTRA = "pathExtra";
 
     private final LongSparseArray<BetterPlayer> videoPlayers = new LongSparseArray<>();
     private final LongSparseArray<Map<String, Object>> dataSources = new LongSparseArray<>();
@@ -318,7 +319,7 @@ public class BetterPlayerPlugin implements FlutterPlugin, ActivityAware, MethodC
                     0L,
                     overriddenDuration.longValue(),
                     null,
-                    null, null, null
+                    null, null, null, ""
             );
         } else {
             boolean useCache = getParameter(dataSource, USE_CACHE_PARAMETER, false);
@@ -331,6 +332,7 @@ public class BetterPlayerPlugin implements FlutterPlugin, ActivityAware, MethodC
             String formatHint = getParameter(dataSource, FORMAT_HINT_PARAMETER, null);
             String licenseUrl = getParameter(dataSource, LICENSE_URL_PARAMETER, null);
             String clearKey = getParameter(dataSource, DRM_CLEARKEY_PARAMETER, null);
+            String pathExtra = getParameter(dataSource, PATH_EXTRA, "none");
             Map<String, String> drmHeaders = getParameter(dataSource, DRM_HEADERS_PARAMETER, new HashMap<>());
             player.setDataSource(
                     flutterState.applicationContext,
@@ -346,7 +348,8 @@ public class BetterPlayerPlugin implements FlutterPlugin, ActivityAware, MethodC
                     licenseUrl,
                     drmHeaders,
                     cacheKey,
-                    clearKey
+                    clearKey,
+                    pathExtra
             );
         }
     }

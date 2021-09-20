@@ -11,13 +11,15 @@ import java.io.File;
 
 public class BetterPlayerCache {
     private static volatile SimpleCache instance;
+    private static volatile String pathExtraClass = "";
 
-    public static SimpleCache createCache(Context context, long cacheFileSize) {
-        if (instance == null) {
+    public static SimpleCache createCache(Context context, long cacheFileSize, String pathExtra) {
+        if (instance == null || !pathExtraClass.equals(pathExtra)) {
             synchronized (BetterPlayerCache.class) {
-                if (instance == null) {
+                if (instance == null || !pathExtraClass.equals(pathExtra)) {
+                    pathExtraClass = pathExtra;
                     instance = new SimpleCache(
-                            new File(context.getCacheDir(), "betterPlayerCache"),
+                            new File(context.getFilesDir(), "betterPlayerCache/" + pathExtra),
                             new LeastRecentlyUsedCacheEvictor(cacheFileSize),
                             new ExoDatabaseProvider(context));
                 }

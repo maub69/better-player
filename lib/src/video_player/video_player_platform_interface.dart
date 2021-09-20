@@ -230,7 +230,8 @@ class DataSource {
       this.certificateUrl,
       this.drmHeaders,
       this.activityName,
-      this.clearKey})
+      this.clearKey,
+      this.pathExtra})
       : assert(uri == null || asset == null);
 
   /// Describes the type of data source this [VideoPlayerController]
@@ -251,6 +252,8 @@ class DataSource {
   /// **Android only**. Will override the platform's generic file format
   /// detection with whatever is set here.
   final VideoFormat? formatHint;
+
+  final String? pathExtra;
 
   /// **Android only**. String representation of a formatHint.
   String? get rawFormalHint {

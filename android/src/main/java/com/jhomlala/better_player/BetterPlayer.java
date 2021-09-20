@@ -149,7 +149,7 @@ final class BetterPlayer {
             Context context, String key, String dataSource, String formatHint, Result result,
             Map<String, String> headers, boolean useCache, long maxCacheSize, long maxCacheFileSize,
             long overriddenDuration, String licenseUrl, Map<String, String> drmHeaders,
-            String cacheKey, String clearKey) {
+            String cacheKey, String clearKey, String pathExtra) {
         this.key = key;
         isInitialized = false;
 
@@ -210,7 +210,7 @@ final class BetterPlayer {
 
             if (useCache && maxCacheSize > 0 && maxCacheFileSize > 0) {
                 dataSourceFactory =
-                        new CacheDataSourceFactory(context, maxCacheSize, maxCacheFileSize, dataSourceFactory);
+                        new CacheDataSourceFactory(context, maxCacheSize, maxCacheFileSize, pathExtra, dataSourceFactory);
             }
         } else {
             dataSourceFactory = new DefaultDataSourceFactory(context, userAgent);
@@ -866,7 +866,7 @@ final class BetterPlayer {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void clearCache(Context context, Result result) {
         try {
-            File file = new File(context.getCacheDir(), "betterPlayerCache");
+            File file = new File(context.getFilesDir(), "betterPlayerCache");
             deleteDirectory(file);
             result.success(null);
         } catch (Exception exception) {

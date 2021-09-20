@@ -17,17 +17,20 @@ class CacheDataSourceFactory implements DataSource.Factory {
     private final Context context;
     private final DefaultDataSourceFactory defaultDatasourceFactory;
     private final long maxFileSize, maxCacheSize;
+    private String pathExtra;
 
 
     CacheDataSourceFactory(
             Context context,
             long maxCacheSize,
             long maxFileSize,
+            String pathExtra,
             DataSource.Factory upstreamDataSource) {
         super();
         this.context = context;
         this.maxCacheSize = maxCacheSize;
         this.maxFileSize = maxFileSize;
+        this.pathExtra = pathExtra;
         DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
         defaultDatasourceFactory =
                 new DefaultDataSourceFactory(this.context, bandwidthMeter, upstreamDataSource);
@@ -36,7 +39,7 @@ class CacheDataSourceFactory implements DataSource.Factory {
     @SuppressWarnings("NullableProblems")
     @Override
     public CacheDataSource createDataSource() {
-        SimpleCache betterPlayerCache = BetterPlayerCache.createCache(context, maxCacheSize);
+        SimpleCache betterPlayerCache = BetterPlayerCache.createCache(context, maxCacheSize, pathExtra);
         return new CacheDataSource(
                 betterPlayerCache,
                 defaultDatasourceFactory.createDataSource(),
