@@ -24,7 +24,7 @@ class BetterPlayerPlaylistController {
   ///Next video change listener subscription
   StreamSubscription? _nextVideoTimeStreamSubscription;
 
-  ///Flag that determines whenever player is changing video
+  ///Flag that determines whenever player nging video
   bool _changingToNextVideo = false;
 
   BetterPlayerPlaylistController(
